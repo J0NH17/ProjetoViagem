@@ -33,33 +33,21 @@ public class PlanejamentoViagem {
         int duracao = Integer.parseInt(duracaoString);
         String gastoDiario = JOptionPane.showInputDialog("Quanto de gasto por dia ?");
         double gastoDay = Double.parseDouble(gastoDiario);
-        
-        boolean valida = false;
-        
-        do{
 
-            String dataStr = JOptionPane.showInputDialog("qual dia da viajem ?");
+        String dataStr = JOptionPane.showInputDialog("qual dia da viajem ? dd/MM/yyyy ");
+         LocalDate dataViagem = LocalDate.now() ;
 
-            //validação de data 
-            DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate.parse(dataStr, df);
-           
-            
-        
-        
-        }while(valida == false);
-        
-        
-        
-        
-       
+        try{
+        //validação de data 
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        dataViagem = LocalDate.parse(dataStr, df);
 
-        LocalDate dataViagem = LocalDate.now();
-        
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,"DATA INVÁLIDA ");
 
-        System.out.println(dataViagem.getDayOfMonth());
-        System.out.println(dataViagem.getMonth());
-        System.out.println(dataViagem.getYear());
+        }
+        dataViagem.getDayOfMonth();
+  
     }
 
 }
