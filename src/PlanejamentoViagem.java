@@ -20,34 +20,40 @@ public class PlanejamentoViagem {
 
     public static void marcarV() {
         
-
         String viajante = JOptionPane.showInputDialog("Qual o nome do viajante");
-        if (viajante.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Campo vazio ");
-        }
         String duracaoString = JOptionPane.showInputDialog("Quantos dias de viagem ?");
-        if (duracaoString.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Campo vazio ");
-        }
-
-        int duracao = Integer.parseInt(duracaoString);
         String gastoDiario = JOptionPane.showInputDialog("Quanto de gasto por dia ?");
+        
+        if(viajante.isEmpty()|| duracaoString.isEmpty()){
+        
+            JOptionPane.showMessageDialog(null, "Campos vazios (╬▔皿▔)╯ ");
+        }
+ 
+        int duracao = Integer.parseInt(duracaoString);
         double gastoDay = Double.parseDouble(gastoDiario);
 
-        String dataStr = JOptionPane.showInputDialog("qual dia da viajem ? dd/MM/yyyy ");
-         LocalDate dataViagem = LocalDate.now() ;
+            
+        
+        boolean valida = false;
+        while(valida == false){// loop obrigando a entrada de uma data válida .
+            try{
+            String dataStr = JOptionPane.showInputDialog("qual dia da viajem ? dd/MM/yyyy ");
+            //validação de data 
+            DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate dataViagem = LocalDate.parse(dataStr, df);
+            valida = true;
+            
+            }catch(Exception erro){
+                JOptionPane.showMessageDialog(null,"DATA INVÁLIDA ");
 
-        try{
-        //validação de data 
-        DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        dataViagem = LocalDate.parse(dataStr, df);
-
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,"DATA INVÁLIDA ");
-
+            }
         }
-        dataViagem.getDayOfMonth();
-  
+        
+        
+        
+        
+        
+        
+        
     }
-
 }
